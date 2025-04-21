@@ -151,6 +151,56 @@ await call_tool("list_commits",
 )
 ```
 
+## �� Documentation
+
+### Building Documentation
+
+#### On Linux/macOS
+```bash
+cd docs
+make html
+```
+
+#### On Windows
+```bash
+cd docs
+# Using PowerShell
+.\build_docs.ps1
+
+# Or using Command Prompt
+build_docs.bat
+```
+
+The documentation will be available in `docs/_build/html/`. Open `index.html` in your browser to view it.
+
+### Authentication
+The service supports multiple authentication methods:
+- Direct token authentication
+- User ID-based token lookup
+- Environment variable fallback
+- Token creation guide and troubleshooting resources
+
+### Repository Operations
+- Create repositories with customizable settings
+- Manage branches and commits
+- Handle file operations
+- Search and filter repositories
+- Compare commits and branches
+
+### Pull Request Management
+- Create and update pull requests
+- Handle merge strategies (merge, squash, rebase)
+- Validate merge status
+- Manage conflicts
+- Support for draft PRs
+
+### Issue Tracking
+- Create and update issues
+- Manage labels and assignees
+- Handle comments
+- Track issue status
+- Search and filter issues
+
 ## 🔧 Configuration
 
 The service can be configured through the `Config` class:
