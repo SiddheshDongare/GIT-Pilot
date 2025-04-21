@@ -1,0 +1,57 @@
+[project]
+name = "git-pilot"
+version = "0.1.0"
+description = "A powerful GitHub automation and management tool with FastMCP integration"
+readme = "README.md"
+requires-python = ">=3.12.10"
+dependencies = [
+    "fastmcp>=2.2.1",
+    "mcp[cli]>=1.6.0",
+    "pygithub>=2.6.1",
+    "pytest>=8.3.5",
+    "python-dotenv>=1.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=4.1.0",
+    "black>=24.2.0",
+    "mypy>=1.8.0",
+    "bandit>=1.7.7",
+    "pre-commit>=3.6.0",
+    "sphinx>=7.2.6",
+    "sphinx-rtd-theme>=2.0.0",
+    "sphinx-autodoc-typehints>=1.25.2",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py312']
+include = '\.pyi?$'
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+
+[tool.bandit]
+exclude_dirs = ["tests"]
+skips = ["B101"]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = "-ra -q --cov=git_pilot --cov-report=term-missing"
+testpaths = [
+    "tests",
+]
+python_files = ["test_*.py"]
