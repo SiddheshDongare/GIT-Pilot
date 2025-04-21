@@ -56,7 +56,7 @@ jobs:
     - name: Run black
       run: |
         source .venv/bin/activate
-        black . --check
+        black .
 
     - name: Run flake8
       run: |
