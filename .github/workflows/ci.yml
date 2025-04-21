@@ -54,16 +54,23 @@ jobs:
         uv pip install pytest pytest-cov black mypy flake8
 
     - name: Run black
-      run: black . --check
+      run: |
+        source .venv/bin/activate
+        black . --check
 
     - name: Run flake8
-      run: flake8 . --count --max-line-length=88 --statistics
+      run: |
+        source .venv/bin/activate
+        flake8 . --count --max-line-length=88 --statistics
 
     - name: Run mypy
-      run: mypy .
+      run: |
+        source .venv/bin/activate
+        mypy .
 
     - name: Run tests
       run: |
+        source .venv/bin/activate
         pytest --cov=./ --cov-report=xml --cov-report=term-missing
 
     - name: Upload coverage to Codecov
