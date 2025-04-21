@@ -31,6 +31,12 @@ jobs:
     - name: Create virtual environment
       run: uv venv
 
+    - name: Activate virtual environment
+      run: |
+        source .venv/bin/activate
+        which python
+        which pip
+
     - name: Cache dependencies
       uses: actions/cache@v4
       with:
@@ -43,12 +49,13 @@ jobs:
 
     - name: Install dependencies
       run: |
+        source .venv/bin/activate
         uv pip install -r requirements.txt
         uv pip install pytest pytest-cov black mypy flake8 safety
 
     - name: Check dependencies for known vulnerabilities
       run: |
-        uv pip install safety
+        source .venv/bin/activate
         safety check
 
     - name: Run black
