@@ -28,6 +28,9 @@ jobs:
       run: |
         curl -LsSf https://astral.sh/uv/install.sh | sh
 
+    - name: Create virtual environment
+      run: uv venv
+
     - name: Cache dependencies
       uses: actions/cache@v4
       with:
@@ -93,7 +96,8 @@ jobs:
     - name: Check for outdated dependencies
       run: |
         pip install pip-tools
-        pip-compile --dry-run --upgrade requirements.txt
+        pip-compile --dry-run --upgrade requirements.txt --output-file requirements.new.txt
+        diff requirements.txt requirements.new.txt || true
 
   release:
     needs: [test, security]
