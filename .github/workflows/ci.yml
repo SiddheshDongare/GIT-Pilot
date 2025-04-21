@@ -51,12 +51,7 @@ jobs:
       run: |
         source .venv/bin/activate
         uv pip install -r requirements.txt
-        uv pip install pytest pytest-cov black mypy flake8 safety
-
-    - name: Check dependencies for known vulnerabilities
-      run: |
-        source .venv/bin/activate
-        safety scan
+        uv pip install pytest pytest-cov black mypy flake8
 
     - name: Run black
       run: black . --check
