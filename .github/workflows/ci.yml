@@ -47,7 +47,9 @@ jobs:
         uv pip install pytest pytest-cov black mypy flake8 safety
 
     - name: Check dependencies for known vulnerabilities
-      run: safety check
+      run: |
+        uv pip install safety
+        safety check
 
     - name: Run black
       run: black . --check
