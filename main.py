@@ -298,13 +298,7 @@ def get_github_client(
     return github_client_manager.get_client(token, user_id)
 
 
-@mcp.resource(
-    uri="guide://github-token-creation",
-    name="GitHub Token Creation Guide",
-    description="Detailed step-by-step instructions for creating a GitHub personal access token.",
-    mime_type="application/json",
-    tags={"authentication", "github", "guide"},
-)
+@mcp.resource("guide://github-token-creation")
 def get_token_creation_guide() -> dict:
     """
     Provides detailed instructions for creating a GitHub personal access token.
@@ -422,13 +416,7 @@ def get_token_creation_guide() -> dict:
     }
 
 
-@mcp.resource(
-    uri="guide://github-token-troubleshooting",
-    name="GitHub Token Troubleshooting Guide",
-    description="Common issues and solutions when working with GitHub personal access tokens.",
-    mime_type="application/json",
-    tags={"authentication", "github", "guide", "troubleshooting"},
-)
+@mcp.resource("guide://github-token-troubleshooting")
 def get_token_troubleshooting_guide() -> dict:
     """
     Provides detailed troubleshooting information for common GitHub token issues.
@@ -585,13 +573,7 @@ def get_token_troubleshooting_guide() -> dict:
     }
 
 
-@mcp.resource(
-    uri="guide://github-token-faq",
-    name="GitHub Token FAQ",
-    description="Frequently asked questions about GitHub personal access tokens.",
-    mime_type="application/json",
-    tags={"authentication", "github", "guide", "faq"},
-)
+@mcp.resource("guide://github-token-faq")
 def get_token_faq() -> dict:
     """
     Provides answers to frequently asked questions about GitHub tokens.
