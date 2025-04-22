@@ -31,7 +31,6 @@ class Config:
     CLEANUP_INTERVAL_SECONDS: int = 3600
     MAX_RETRIES: int = 3
     RETRY_DELAY_SECONDS: int = 5
-    MAX_RESULTS_PER_PAGE: int = 100
     ENCRYPTION_KEY: bytes = Fernet.generate_key()
 
 
@@ -194,10 +193,7 @@ def handle_rate_limit(func: Callable[..., T]) -> Callable[..., T]:
                 logger.error(f"Error in {func.__name__}: {str(e)}")
                 raise
         return func(*args, **kwargs)
-
-
-# Fallback to environment variable if available
-DEFAULT_GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+    return wrapper
 
 
 class GitHubClientManager:
@@ -219,7 +215,7 @@ class GitHubClientManager:
             client_token = token_manager.get_token(user_id)
 
         if not client_token:
-            client_token = DEFAULT_GITHUB_TOKEN
+            client_token = os.getenv("GITHUB_TOKEN")
 
         if not client_token:
             raise ValueError(
@@ -280,14 +276,6 @@ def validate_branch_name(branch: str) -> None:
     """Validate branch name format"""
     if not branch or "/" in branch:
         raise ValueError("Invalid branch name")
-
-
-def validate_date_format(date_str: str) -> None:
-    """Validate ISO date format"""
-    try:
-        datetime.fromisoformat(date_str)
-    except ValueError:
-        raise ValueError("Invalid date format. Use ISO format YYYY-MM-DD")
 
 
 @handle_rate_limit
