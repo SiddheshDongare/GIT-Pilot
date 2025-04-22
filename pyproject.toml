@@ -5,49 +5,8 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "git-pilot"
 version = "1.0.0"
-description = "A Git automation tool"
+description = "A GitHub MCP Server"
 requires-python = ">=3.12,<4.0"
 dependencies = [
     "fastmcp>=2.2.1",
 ]
-
-[project.optional-dependencies]
-dev = [
-    "pytest>=8.0.0",
-    "pytest-cov>=4.1.0",
-    "black>=24.2.0",
-    "mypy>=1.8.0",
-    "bandit>=1.7.7",
-    "pre-commit>=3.6.0",
-    "sphinx>=7.2.6",
-    "sphinx-rtd-theme>=2.0.0",
-    "sphinx-autodoc-typehints>=1.25.2",
-]
-
-[tool.black]
-line-length = 88
-target-version = ['py312']
-include = '\.pyi?$'
-
-[tool.mypy]
-python_version = "3.12"
-warn_return_any = true
-warn_unused_configs = true
-disallow_untyped_defs = true
-disallow_incomplete_defs = true
-check_untyped_defs = true
-disallow_untyped_decorators = true
-no_implicit_optional = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-warn_no_return = true
-warn_unreachable = true
-
-[tool.bandit]
-exclude_dirs = ["tests"]
-skips = ["B101"]
-
-[tool.pytest.ini_options]
-testpaths = ["tests"]
-python_files = ["test_*.py"]
-addopts = "--cov=git_pilot --cov-report=xml"

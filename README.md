@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![GitHub](https://img.shields.io/badge/GitHub-GIT--Pilot-blue)](https://github.com/yourusername/GIT-Pilot)
 
-GIT-Pilot is a powerful GitHub automation and management tool that provides a comprehensive API wrapper for GitHub operations. It simplifies GitHub interactions through a FastMCP-based server, making it easy to manage repositories, pull requests, issues, and more. The service includes secure token management, rate limit handling, and comprehensive error handling.
+GIT-Pilot is a powerful GitHub automation and management tool that provides a comprehensive API wrapper for GitHub operations. It simplifies GitHub interactions through a FastMCP-based server, making it easy to manage repositories, pull requests, issues, and more.
 
 ## 🌟 Features
 
@@ -13,7 +13,6 @@ GIT-Pilot is a powerful GitHub automation and management tool that provides a co
 - Token expiration and automatic cleanup
 - Rate limit handling and automatic retries
 - Configurable authentication timeouts
-- Token creation guide and troubleshooting resources
 
 ### 📦 Repository Management
 - Create and manage repositories
@@ -61,64 +60,31 @@ git clone https://github.com/yourusername/GIT-Pilot.git
 cd GIT-Pilot
 ```
 
-2. Create and activate a virtual environment:
+2. Install uv (if not already installed):
 ```bash
-python -m venv .venv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+3. Create and activate a virtual environment:
+```bash
+uv venv
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
-3. Install dependencies using uv:
+4. Install the package using uv:
 ```bash
-uv pip install -r requirements.txt
+uv pip install -e .
 ```
 
-4. Set up environment variables:
+5. Set up environment variables:
 Create a `.env` file in the project root:
 ```env
 GITHUB_TOKEN=your_github_token_here
 ```
 
-### Running the Server
-
-#### Using Python Directly
-```bash
-python main.py
-```
-
-#### Using FastMCP CLI (Recommended)
-```bash
-fastmcp run main.py:mcp
-```
-
-The FastMCP CLI provides better server management and monitoring capabilities. For more details about FastMCP server configuration and usage, visit the [FastMCP Quickstart Guide](https://gofastmcp.com/getting-started/quickstart).
-
-### Basic Usage
-
-1. Create a client:
-```python
-from fastmcp import Client
-
-client = Client("main.py")
-
-async def call_tool(name: str, **kwargs):
-    async with client:
-        result = await client.call_tool(name, kwargs)
-        print(result)
-```
-
-2. Example API calls:
+### API Examples
 
 ```python
-# Get token creation guide
-await call_tool("get_token_creation_guide")
-
-# Authenticate
-await call_tool("authenticate",
-    token="your_token",
-    user_id="user123",
-    ttl_hours=24
-)
-
 # Create a repository
 await call_tool("create_repository",
     name="my-repo",
@@ -151,56 +117,6 @@ await call_tool("list_commits",
 )
 ```
 
-## �� Documentation
-
-### Building Documentation
-
-#### On Linux/macOS
-```bash
-cd docs
-make html
-```
-
-#### On Windows
-```bash
-cd docs
-# Using PowerShell
-.\build_docs.ps1
-
-# Or using Command Prompt
-build_docs.bat
-```
-
-The documentation will be available in `docs/_build/html/`. Open `index.html` in your browser to view it.
-
-### Authentication
-The service supports multiple authentication methods:
-- Direct token authentication
-- User ID-based token lookup
-- Environment variable fallback
-- Token creation guide and troubleshooting resources
-
-### Repository Operations
-- Create repositories with customizable settings
-- Manage branches and commits
-- Handle file operations
-- Search and filter repositories
-- Compare commits and branches
-
-### Pull Request Management
-- Create and update pull requests
-- Handle merge strategies (merge, squash, rebase)
-- Validate merge status
-- Manage conflicts
-- Support for draft PRs
-
-### Issue Tracking
-- Create and update issues
-- Manage labels and assignees
-- Handle comments
-- Track issue status
-- Search and filter issues
-
 ## 🔧 Configuration
 
 The service can be configured through the `Config` class:
@@ -225,7 +141,6 @@ class Config:
 - Input validation
 - Comprehensive error handling
 - Secure token cleanup
-- Token creation guide and best practices
 
 ## 🔄 Rate Limiting
 
