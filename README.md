@@ -8,6 +8,10 @@
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![GitHub](https://img.shields.io/badge/GitHub-GIT--Pilot-blue)](https://github.com/yourusername/GIT-Pilot)
 
+<div align="center">
+  <h3>⭐️ If you find this project helpful, please give it a star! ⭐️</h3>
+</div>
+
 GIT-Pilot is a powerful GitHub automation and management tool that provides a comprehensive API wrapper for GitHub operations. It simplifies GitHub interactions through a FastMCP-based server, making it easy to manage repositories, pull requests, issues, and more.
 
 ## 🌟 Features
@@ -85,6 +89,39 @@ Create a `.env` file in the project root:
 ```env
 GITHUB_TOKEN=your_github_token_here
 ```
+
+### Basic Usage
+
+#### Setting Up Claude Desktop Integration
+
+1. Start the GIT-Pilot server:
+```bash
+uv run main.py
+```
+
+2. Download and install [Claude Desktop](https://claude.ai/download)
+
+3. Configure Claude Desktop:
+   - Open Claude Desktop
+   - Go to `File > Settings > Developer > Edit Config`
+   - Add the following configuration:
+```json
+{
+    "mcpServers": {
+        "GIT-Pilot": {
+            "command": "uv",
+            "args": [
+                "--directory",
+                "path\\to\\repo",
+                "run",
+                "main.py"
+            ]
+        }
+    }
+}
+```
+4. Restart Claude Desktop
+5. Look for the hammer icon in the chat window - this indicates the MCP server is ready to use
 
 ### API Examples
 
@@ -198,20 +235,6 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 - [PyGithub](https://github.com/PyGithub/PyGithub) for the GitHub API wrapper
 - [FastMCP](https://gofastmcp.com) for the server framework
 - [Fernet](https://cryptography.io/en/latest/fernet/) for secure token encryption
-
-## 📞 Support
-
-- GitHub Issues: [Report a bug](https://github.com/yourusername/GIT-Pilot/issues)
-- Documentation: [Wiki](https://github.com/yourusername/GIT-Pilot/wiki)
-- Community: [Discussions](https://github.com/yourusername/GIT-Pilot/discussions)
-
-## 🔄 Updates
-
-Stay updated with the latest changes:
-- Follow our [release notes](https://github.com/yourusername/GIT-Pilot/releases)
-- Subscribe to our [newsletter](https://github.com/yourusername/GIT-Pilot/discussions/categories/announcements)
-- Star the repository for updates
-
 ---
 
 Made with ❤️ by the GIT-Pilot team
