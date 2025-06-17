@@ -1,3 +1,5 @@
+[![MseeP.ai Security Assessment Badge](https://mseep.net/pr/siddheshdongare-git-pilot-badge.png)](https://mseep.ai/app/siddheshdongare-git-pilot)
+
 # GIT-Pilot
 
 <div align="center">
